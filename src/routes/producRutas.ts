@@ -18,6 +18,6 @@ router.get('/productos/:id', obtenerProductoPorId);
 router.put('/productos/:id/cantidad', actualizarCantidadProducto);
 router.get('/productos/:id/verificar', verificarProductoAgotado);
 router.delete('/productos/:id', eliminarProducto);
-router.get('/eventos', eventosProductos);
+router.get('/see', eventosProductos);
 
 export default router;

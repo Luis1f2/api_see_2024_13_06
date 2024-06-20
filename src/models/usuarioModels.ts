@@ -1,7 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
-
 interface IUser extends Document {
   username: string;
   email: string;
@@ -15,6 +14,7 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
 });
 
+// Encriptar la contraseña antes de guardarla
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
