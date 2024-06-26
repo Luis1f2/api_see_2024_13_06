@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import userRutas from './src/routes/userRutas';
 import compraRutas from './src/routes/compraRutas';
 import producRutas from './src/routes/producRutas'
+import webhookRutas from './src/routes/webhookRutas'
 import connectDB from "./src/config/database";
 
 connectDB();
@@ -17,21 +18,20 @@ app.use(express.json());
 const port = process.env.port || 3000;
 
 const corsOptions = {
-    origin: ['http://localhost:3001','http://localhost:3000'],
+    origin: ['http://localhost:3000','http://localhost:3001'],
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 
-app.get('/', (req, res) => {
-    res.send('si ves estemensaje es que la api que esta hacediendo es de uso privado');
-});
+
 app.use(bodyParser.json());
 
 
 //Rutas
 app.use('/usuario', userRutas);
 app.use('/producto',producRutas);
-app.use('/compra',compraRutas)
+app.use('/compra',compraRutas);
+app.use('',webhookRutas);
 
 app.get('/events', (req, res) => {
     res.setHeader('Content-Type', 'text/event-stream');

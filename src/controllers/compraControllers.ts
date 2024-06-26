@@ -25,7 +25,7 @@ export const createCompra = async (req: Request, res: Response): Promise<void> =
       const producto = await Producto.findById(productObjectId).session(session);
 
       if (!producto) {
-        sendErrorResponse(res, 404, `Producto con ID ${productId} no encontrado`);
+        sendErrorResponse(res, 404,`Producto con ID ${productId} no encontrado`) ;
         await session.abortTransaction();
         session.endSession();
         return;
